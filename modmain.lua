@@ -35,6 +35,30 @@ local function GetBossDisplayName(prefab)
     return BOSS_NAMES[prefab] or prefab
 end
 
+-- 获取 Boss 出现位置附近最近的玩家（可能为召唤者或自然生成时的目标玩家）
+local function GetNearestPlayerToEntity(inst, max_dist)
+    max_dist = max_dist or 60
+    local x, y, z = inst.Transform:GetWorldPosition()
+    local max_dist_sq = max_dist * max_dist
+    local nearest = nil
+    local nearest_dist_sq = max_dist_sq
+    for _, player in ipairs(AllPlayers or {}) do
+        if player and player:IsValid() and player:HasTag("player") and not player:HasTag("playerghost") then
+            local dist_sq = player:GetDistanceSqToPoint(x, y, z)
+            if dist_sq < nearest_dist_sq then
+                nearest_dist_sq = dist_sq
+                nearest = player
+            end
+        end
+    end
+    return nearest
+end
+
+local function GetPlayerDisplayName(player)
+    if not player or not player:IsValid() then return nil end
+    return (player.GetDisplayName and player:GetDisplayName()) or (player.name and player.name.GetString and player.name:GetString())
+end
+
 local function Announce(msg)
     if TheNet and msg and msg ~= "" then
         TheNet:Announce(msg, nil, nil, "mod")
@@ -74,7 +98,14 @@ local function OnBossSpawn(inst)
     inst:DoTaskInTime(0, function()
         if not inst:IsValid() then return end
         local boss_name = GetBossDisplayName(inst.prefab)
-        local msg = ("【警告】%s 已出现！"):format(boss_name)
+        local nearby_player = GetNearestPlayerToEntity(inst, 60)
+        local msg
+        if nearby_player then
+            local name = GetPlayerDisplayName(nearby_player) or "未知玩家"
+            msg = ("【警告】%s 已出现！(附近: %s)"):format(boss_name, name)
+        else
+            msg = ("【警告】%s 已出现！"):format(boss_name)
+        end
         Announce(msg)
     end)
 end

@@ -1,6 +1,6 @@
 name = "Who-Done-It"
 description = "当玩家执行危险操作时，在聊天框通报所有玩家。例如：点火烧家、召唤BOSS等。"
-author = "Who-Done-It"
+author = "橙小幸"
 version = "1.0.0"
 forumthread = ""
 api_version = 10
