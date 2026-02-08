@@ -1,7 +1,23 @@
 name = "Who-Done-It"
-description = "当玩家执行危险操作时，在聊天框通报所有玩家。例如：点火烧家、召唤BOSS等。"
+description = [[
+
+Who fire the building?
+Who call the boss?
+
+当玩家执行危险操作时，在聊天框通报所有玩家。例如：点火烧家、召唤BOSS等。
+
+只有玩家烧建筑才会通报，烧树木不会通报。
+召唤boss的一瞬间检测最近的一个玩家并进行通报，因为大概率是他召唤的BOSS。
+BOSS名称：巨鹿 龙蝇 熊獾 麋鹿鹅 蚁狮 蛤蟆 暗影蛤蟆 帝王蟹 邪天翁 克劳斯 编织者 远古守卫者 天体英雄 风暴之眼 果蝇王
+你可以自行修改BOSS名称，只需要在modmain.lua中修改BOSS_NAMES表即可。
+
+版本号：1.2.0
+
+
+
+]]
 author = "橙小幸"
-version = "1.0.0"
+version = "1.2.0"
 forumthread = ""
 api_version = 10
 priority = 0
