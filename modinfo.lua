@@ -12,8 +12,8 @@ dst_compatible = true
 client_only_mod = false
 all_clients_require_mod = false
 
-icon_atlas = ""
-icon = ""
+icon_atlas = "modicon.xml"
+icon = "modicon.tex"
 
 configuration_options = {
     {
