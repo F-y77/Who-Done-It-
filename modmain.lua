@@ -1,5 +1,3 @@
--- Who-Done-It: 危险操作通报模组
--- 当玩家执行危险操作时，在聊天框通报所有玩家
 
 GLOBAL.setmetatable(env, { __index = function(t, k) return GLOBAL.rawget(GLOBAL, k) end })
 
