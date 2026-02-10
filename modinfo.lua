@@ -17,7 +17,7 @@ BOSS名称：巨鹿 龙蝇 熊獾 麋鹿鹅 蚁狮 蛤蟆 暗影蛤蟆 帝王蟹
 
 ]]
 author = "橙小幸"
-version = "1.2.0"
+version = "1.2.1"
 forumthread = ""
 api_version = 10
 priority = 0
